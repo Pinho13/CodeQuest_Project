@@ -14,6 +14,8 @@ class Game:
         self.clock = pygame.time.Clock()
         self.events = pygame.event.get()
         self.fps = fps
+        
+        self.run()
 
     def check_events(self):
         self.clock.tick()
@@ -36,4 +38,3 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
-    game.run()
