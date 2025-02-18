@@ -1,12 +1,10 @@
-import codequest
-import pygame
-
-game = codequest.Game()
-
+from codequest import *
+game = Game()
+text = objects.Text(game, "Test", color=pygame.Color("black"))
 
 @game.on_update
-def update(game):
-    pygame.draw.rect(game.screen, (255, 0, 0), (50, 50, 100, 100))
+def update():
+    pass
 
 
 game.run()

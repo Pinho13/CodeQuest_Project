@@ -1,10 +1,13 @@
 import pygame
 import sys
+import objects
+
+from pygame import Vector2
 
 class Game:
     def __init__(
         self,
-        name="window",
+        name="",
         width=500,
         height=500,
         background_color=(255, 255, 255),
@@ -20,7 +23,7 @@ class Game:
         self.clock = pygame.time.Clock()
         self.events = pygame.event.get()
         self.fps = fps
-        
+
         #Inputs
         self.keys_down = []
         self.keys_up = []
@@ -29,6 +32,9 @@ class Game:
         #Stores functions that run every frame
         self.update_functions = []
 
+        #Stores sprites
+        self.sprites = pygame.sprite.Group()
+
     def check_events(self):
         self.clock.tick()
         self.events = pygame.event.get()
@@ -36,7 +42,7 @@ class Game:
         #Restart Inputs
         self.keys_down = []
         self.keys_up = []
-
+    
         for event in self.events:
             #QUIT event
             if event.type == pygame.QUIT:
@@ -60,8 +66,9 @@ class Game:
 
     def update(self):
         self.screen.fill(self.background_color)
+        self.sprites.draw(self.screen)
         for func in self.update_functions:
-            func(self)
+            func()
         pygame.display.update()
 
     def run(self):
