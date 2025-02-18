@@ -26,7 +26,7 @@ class Game:
         self.keys_up = []
         self.keys_pressed = []
 
-
+        #Stores functions that run every frame
         self.update_functions = []
 
     def check_events(self):
@@ -54,11 +54,8 @@ class Game:
                 self.keys_pressed.remove(event.key)
             # print(event.dict)
 
-    def add_update_function(self, func):
-        self.update_functions.append(func)
-
     def on_update(self, func):
-        self.add_update_function(func)
+        self.update_functions.append(func)
         return func
 
     def update(self):
@@ -75,3 +72,4 @@ class Game:
 
 if __name__ == "__main__":
     game = Game()
+    game.run()
