@@ -31,13 +31,17 @@ class Game:
         self.keys_up = []
 
         for event in self.events:
+            #QUIT event
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
+
+            #KEYDOWN event
             if event.type == pygame.KEYDOWN:
                 self.keys_down.append(event.key)
                 self.keys_pressed.append(event.key)
             
+            #KEYUP event
             if event.type == pygame.KEYUP:
                 self.keys_up.append(event.key)
                 self.keys_pressed.remove(event.key)
