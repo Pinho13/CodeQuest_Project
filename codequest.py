@@ -23,7 +23,6 @@ class Game:
         self.run()
 
     def check_events(self):
-        global keys_down
         self.clock.tick()
         self.events = pygame.event.get()
 
