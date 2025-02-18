@@ -1,7 +1,6 @@
 import pygame
 import sys
 
-
 class Game:
     def __init__(self, name="window", width=500, height=500, background_color = (255, 255, 255), fps = 60):
         pygame.init()
@@ -15,16 +14,26 @@ class Game:
         self.events = pygame.event.get()
         self.fps = fps
         
+        #Inputs
+        keys_down = []
+
+        #Make it run
         self.run()
 
     def check_events(self):
+        global keys_down
         self.clock.tick()
         self.events = pygame.event.get()
+
+        #Restart Inputs
+        keys_down = []
+
         for event in self.events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
-            print(event.dict)
+            if event.type == pygame.KEYDOWN:
+                keys_down.append(event.key)
 
     def update(self):
         self.screen.fill(self.background_color)
