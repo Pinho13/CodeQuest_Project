@@ -15,7 +15,9 @@ class Game:
         self.fps = fps
         
         #Inputs
-        keys_down = []
+        self.keys_down = []
+        self.keys_up = []
+        self.keys_pressed = []
 
         #Make it run
         self.run()
@@ -26,14 +28,20 @@ class Game:
         self.events = pygame.event.get()
 
         #Restart Inputs
-        keys_down = []
+        self.keys_down = []
+        self.keys_up = []
 
         for event in self.events:
             if event.type == pygame.QUIT:
                 pygame.quit()
                 sys.exit()
             if event.type == pygame.KEYDOWN:
-                keys_down.append(event.key)
+                self.keys_down.append(event.key)
+                self.keys_pressed.append(event.key)
+            
+            if event.type == pygame.KEYUP:
+                self.keys_up.append(event.key)
+                self.keys_pressed.remove(event.key)
 
     def update(self):
         self.screen.fill(self.background_color)
