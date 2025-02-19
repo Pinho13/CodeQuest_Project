@@ -61,3 +61,11 @@ class Body(pygame.sprite.Sprite):
         self.image.fill(self.color)
         self.image = pygame.transform.scale(self.image, self.size)
         self.rect = self.image.get_rect(topleft=self.pos)
+    
+    #Check if Point is inside Rect
+    def is_colliding_with_point(self, pos: pygame.Vector2):
+        return self.rect.collidepoint(pos)
+    
+    #Check if Rect is touching Rect
+    def is_colliding_with_rect(self, rect: pygame.Rect):
+        return self.rect.colliderect(rect)
