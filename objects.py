@@ -69,3 +69,17 @@ class Body(pygame.sprite.Sprite):
     #Check if Rect is touching Rect
     def is_colliding_with_rect(self, rect: pygame.Rect):
         return self.rect.colliderect(rect)
+
+class RigidBody(Body):
+    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 9.8)):
+        super().__init__(game, pos, size, color)
+        self.game = game
+
+        #Implement it inGame
+        game.update_functions.append(self.physics_update)
+
+        #Atributes
+        self.gravity = gravity
+    
+    def physics_update(self):
+        self.pos += self.gravity * self.game.delta_time * 10

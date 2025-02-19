@@ -35,8 +35,11 @@ class Game:
         #Stores sprites
         self.sprites = pygame.sprite.Group()
 
+        #Usefull Variables
+        self.delta_time = self.clock.tick(self.fps)
+
     def check_events(self):
-        self.clock.tick()
+        self.delta_time = self.clock.tick(self.fps)/1000
         self.events = pygame.event.get()
 
         #Restart Inputs
