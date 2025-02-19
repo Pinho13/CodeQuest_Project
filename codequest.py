@@ -17,6 +17,7 @@ class Game:
         # Screen
         self.screen = pygame.display.set_mode((width, height))
         self.background_color = background_color
+        self.name = name
         pygame.display.set_caption(name)
 
         # Settings
@@ -72,6 +73,8 @@ class Game:
         self.sprites.draw(self.screen)
         for func in self.update_functions:
             func()
+        
+        pygame.display.set_caption(self.name + " - " + str(int(self.clock.get_fps())))
         pygame.display.update()
 
     def run(self):
