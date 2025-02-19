@@ -7,7 +7,7 @@ from pygame import Vector2
 class Game:
     def __init__(
         self,
-        name="",
+        name="Window",
         width=500,
         height=500,
         background_color=(255, 255, 255),

@@ -1,10 +1,10 @@
 from codequest import *
 game = Game()
-text = objects.Text(game, "Test", color=pygame.Color("black"))
+rect = objects.Body(game=game, pos=Vector2(250, 250), size=Vector2(100, 100), color = (50, 100, 100))
+
 
 @game.on_update
 def update():
     pass
-
 
 game.run()

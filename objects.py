@@ -36,3 +36,28 @@ class Text(pygame.sprite.Sprite):
             self.image = self.text_font.render(self.text, True, self.color)
             self.rect = self.image.get_rect(topleft=self.pos)
             self.current_size = self.size
+
+
+class Body(pygame.sprite.Sprite):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0)):
+        super().__init__()
+        self.game = game
+
+        #Implement it inGame
+        game.sprites.add(self)
+        game.update_functions.append(self.update)
+
+        #Atributes
+        self.pos = pos
+        self.color = color
+        self.size = size
+
+        #Body Creation
+        self.image = pygame.Surface(size)
+        self.image.fill(self.color)
+        self.rect = self.image.get_rect(topleft=pos)
+
+    def update(self):
+        self.image.fill(self.color)
+        self.image = pygame.transform.scale(self.image, self.size)
+        self.rect = self.image.get_rect(topleft=self.pos)
