@@ -32,7 +32,7 @@ class Text(pygame.sprite.Sprite):
 
     def check_if_size_changed(self):
         if self.size != self.current_size:
-            self.text = pygame.font.SysFont(None, self.size)
+            self.text_font = pygame.font.SysFont(None, int(self.size))
             self.image = self.text_font.render(self.text, True, self.color)
             self.rect = self.image.get_rect(topleft=self.pos)
             self.current_size = self.size
