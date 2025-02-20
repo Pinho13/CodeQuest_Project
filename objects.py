@@ -71,7 +71,7 @@ class Body(pygame.sprite.Sprite):
         return self.rect.colliderect(rect)
 
 class RigidBody(Body):
-    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 9.8)):
+    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
         super().__init__(game, pos, size, color)
         self.game = game
 
@@ -82,7 +82,18 @@ class RigidBody(Body):
         self.gravity = gravity
         self.velocity = pygame.Vector2()
         self.acceleration = pygame.Vector2()
+        self.deacceleration = deacceleration
+        self.drag = drag
+        self.mass = mass
     
     def physics_update(self):
+        #Move
         self.velocity += (self.gravity + self.acceleration) * self.game.delta_time
-        self.pos += self.velocity
+        self.pos += self.velocity * self.game.delta_time
+
+        #Slow Down
+        self.acceleration = self.acceleration.move_towards(pygame.Vector2(), self.deacceleration * self.game.delta_time)
+        self.velocity = self.velocity.move_towards(pygame.Vector2(), self.drag * self.game.delta_time)
+    
+    def add_force(self, force: pygame.Vector2):
+        self.acceleration += force/self.mass
