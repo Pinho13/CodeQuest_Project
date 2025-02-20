@@ -5,6 +5,6 @@ rect = objects.RigidBody(game=game, pos=Vector2(250, 250), size=Vector2(100, 100
 
 @game.on_update
 def update():
-    print(game.delta_time)
+    pass
 
 game.run()
