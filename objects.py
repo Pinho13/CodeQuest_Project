@@ -71,7 +71,7 @@ class Body(pygame.sprite.Sprite):
         return self.rect.colliderect(rect)
 
 class RigidBody(Body):
-    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 9.8)):
+    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 50)):
         super().__init__(game, pos, size, color)
         self.game = game
 
