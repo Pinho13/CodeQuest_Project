@@ -41,7 +41,7 @@ class Text(pygame.sprite.Sprite):
 
 
 class Body(pygame.sprite.Sprite):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, None] = None):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None):
         super().__init__()
         self.game = game
 
@@ -55,17 +55,21 @@ class Body(pygame.sprite.Sprite):
         self.size = size
 
         #Body Creation
+        self.animator = None
         if image == None:
             self.image = pygame.Surface(size)
+            self.image.fill(self.color)
         else:
-            self.image_class = image
+            self.animator = image
             self.image = image.frame
             self.image = pygame.transform.scale(self.image, self.size)
-        self.image.fill(self.color)
         self.rect = self.image.get_rect(topleft=pos)
 
     def update(self):
-        self.image.fill(self.color)
+        if self.animator == None:
+            self.image.fill(self.color)
+        else:
+            self.image = self.animator.frame
         self.image = pygame.transform.scale(self.image, self.size)
         self.rect = self.image.get_rect(topleft=self.pos)
     
@@ -79,8 +83,8 @@ class Body(pygame.sprite.Sprite):
 
 
 class RigidBody(Body):
-    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
-        super().__init__(game, pos, size, color)
+    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
+        super().__init__(game, pos, size, color, image)
         self.game = game
 
         #Implement it inGame
