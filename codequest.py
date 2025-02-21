@@ -3,6 +3,7 @@ import pygame
 import sys
 import objects
 import tools
+import sprites
 
 from pygame import Vector2
 
