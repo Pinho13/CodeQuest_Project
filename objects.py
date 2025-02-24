@@ -1,5 +1,6 @@
 import pygame
 import sprites
+import tools
 
 from typing import Union
 
@@ -41,7 +42,7 @@ class Text(pygame.sprite.Sprite):
 
 
 class Body(pygame.sprite.Sprite):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None):
         super().__init__()
         self.game = game
 
@@ -59,6 +60,10 @@ class Body(pygame.sprite.Sprite):
         if image == None:
             self.image = pygame.Surface(size)
             self.image.fill(self.color)
+        elif type(image) == str:
+            self.animator = image
+            self.image = tools.convert_images([image])[0]
+            self.image = pygame.transform.scale(self.image, self.size)
         else:
             self.animator = image
             self.image = image.frame
@@ -68,7 +73,7 @@ class Body(pygame.sprite.Sprite):
     def update(self):
         if self.animator == None:
             self.image.fill(self.color)
-        else:
+        elif type(self.animator) != str:
             self.image = self.animator.frame
         self.image = pygame.transform.scale(self.image, self.size)
         self.rect = self.image.get_rect(topleft=self.pos)
