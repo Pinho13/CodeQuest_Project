@@ -61,6 +61,7 @@ class Animation:
                     i()
                 self.current_frame_index = 0
     
+    #Adds functions to a list that gets called when an animation is finnished
     def on_finnish(self, func):
         self.on_anim_finnished.append(func)
         return func
@@ -91,6 +92,7 @@ class Animator:
     def update(self):
         self.frame = self.current_anim.frame
 
+    #Plays an animation
     def play(self, anim: Union[str, int, Animation]):
         self.current_anim.animation_finnished = True
         if type(anim) != int:
@@ -104,6 +106,7 @@ class Animator:
             self.frame = self.animations[anim].frame
             self.animations[anim].play()
     
+    #Adds functions to a list that gets called when an animation is finnished
     def on_finnish(self, func):
         self.on_anim_finnished.append(func)
         return func
