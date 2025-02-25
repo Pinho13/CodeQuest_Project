@@ -2,6 +2,8 @@ from codequest import *
 
 game = Game()
 
+
+
 colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
 current_color = 0
 
@@ -13,7 +15,7 @@ def change_color():
     game.background_color = colors[current_color]
 
 
-timer = tools.Timer(game, 1, looping=True, functions=change_color)
+timer = tools.Timer(game, 0.01, looping=True, functions=change_color)
 
 @game.on_update
 def update():
