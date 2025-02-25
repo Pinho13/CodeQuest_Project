@@ -1,12 +1,19 @@
 from codequest import *
+
 game = Game()
 
-idle = sprites.Animation(game, "idle", "images")
-walk = sprites.Animation(game, "walk", ["images/image2.png", "images/image1.png"])
+colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
+current_color = 0
 
-animator = sprites.Animator(game, [idle, walk])
+def change_color():
+    global current_color
+    current_color += 1
+    if current_color == len(colors):
+        current_color = 0
+    game.background_color = colors[current_color]
 
-rect = objects.RigidBody(game=game, pos=Vector2(250, 250), size=Vector2(200, 50), color = (50, 100, 100), drag=200, deacceleration= 2500, gravity= Vector2(0, 0), image=animator)
+
+timer = tools.Timer(game, 1, looping=True, functions=change_color)
 
 @game.on_update
 def update():
