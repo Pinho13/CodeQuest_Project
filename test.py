@@ -1,24 +1,28 @@
 from codequest import *
+import random
 
 game = Game()
 
+points = ui.Text(game, "0")
+score = 0
+bodies = []
 
+def create_body():
+    global bodies
+    
+    bodies.append(objects.Body(game, pos= Vector2(random.randint(0, game.width-100), random.randint(0, game.height-100))))
 
-colors = [(255, 0, 0), (0, 255, 0), (0, 0, 255)]
-current_color = 0
+timer = tools.Timer(game, 2, True, create_body)
 
-def change_color():
-    global current_color
-    current_color += 1
-    if current_color == len(colors):
-        current_color = 0
-    game.background_color = colors[current_color]
-
-
-timer = tools.Timer(game, 0.01, looping=True, functions=change_color)
 
 @game.on_update
 def update():
-    pass
+    global score
+    points.text = str(score)
+    for i in bodies:
+        if i.is_colliding_with_point(pygame.mouse.get_pos()):
+            i.remove_from_game()
+            score += 1
+            timer.time -= 0.1
 
 game.run()

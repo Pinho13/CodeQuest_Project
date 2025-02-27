@@ -10,6 +10,7 @@ class Text(pygame.sprite.Sprite):
         #Implement it inGame
         game.sprites.add(self)
         game.update_functions.append(self.update)
+        self.ingame = True
 
         #Atributes
         self.pos = pos
@@ -37,3 +38,15 @@ class Text(pygame.sprite.Sprite):
             self.image = self.text_font.render(self.text, True, self.color)
             self.rect = self.image.get_rect(topleft=self.pos)
             self.current_size = self.size
+    
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.sprites.add(self)
+        self.game.update_functions.append(self.update)
+
+    #Remove from rendering and updating
+    def remove_from_game(self):
+        self.ingame = False
+        self.game.sprites.remove(self)
+        self.game.update_functions.remove(self.update)

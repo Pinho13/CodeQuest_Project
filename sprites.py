@@ -9,6 +9,7 @@ class Animation:
 
         #Implement it InGame
         self.game.update_functions.append(self.update)
+        self.ingame = True
 
         #Events
         self.on_anim_finnished = []
@@ -25,7 +26,7 @@ class Animation:
         if isinstance(animation, str):
             animation = tools.get_files_from_dir(animation)
         self.animation = tools.convert_images(animation)
-
+    
         #Current Frame
         self.frame = self.animation[0]
 
@@ -65,19 +66,33 @@ class Animation:
     def on_finnish(self, func):
         self.on_anim_finnished.append(func)
         return func
+    
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.update_functions.append(self.update)
+
+    #Remove from rendering and updating
+    def remove_from_game(self):
+        self.ingame = False
+    
+        self.game.update_functions.remove(self.update)
 
 
 class Animator:
-    def __init__(self, game, animations: list[Animation], idle_anim: Animation = None):
+    def __init__(self, game, animations: Union[list[Animation], Animation], idle_anim: Animation = None):
         self.game = game
 
         #Implement it InGame
         self.game.update_functions.append(self.update)
+        self.ingame = True
 
         #Events
         self.on_anim_finnished = []
 
         #Animations
+        if type(animations) == Animation:
+            animations = [animations]
         idle_anim = animations[0] if idle_anim == None else idle_anim
         self.animations = [idle_anim, ] + animations if idle_anim not in animations else animations
         self.current_anim = idle_anim
@@ -110,4 +125,28 @@ class Animator:
     def on_finnish(self, func):
         self.on_anim_finnished.append(func)
         return func
+    
+    #Remove Animation
+    def remove(self, anim: Union[str, int, Animation]):
+        if type(anim) == Animation:
+            self.animations.remove(anim)
+        elif type(anim) == str:
+            buffer = None
+            for i in self.animations:
+                if i.name == anim:
+                    buffer = i
+            if buffer != None:
+                self.animations.remove(buffer)
+        else:
+            del self.animations[anim]
+
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.update_functions.append(self.update)
+
+    #Remove from rendering and updating
+    def remove_from_game(self):
+        self.ingame = False
+        self.game.update_functions.remove(self.update)
     

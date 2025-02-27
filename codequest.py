@@ -21,6 +21,8 @@ class Game:
         pygame.init()
         # Screen
         self.screen = pygame.display.set_mode((width, height))
+        self.width = width
+        self.height = height
         self.background_color = background_color
         self.name = name
         pygame.display.set_caption(name)

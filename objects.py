@@ -13,6 +13,7 @@ class Body(pygame.sprite.Sprite):
         #Implement it inGame
         game.sprites.add(self)
         game.update_functions.append(self.update)
+        self.ingame = True
 
         #Atributes
         self.pos = pos
@@ -44,11 +45,25 @@ class Body(pygame.sprite.Sprite):
     
     #Check if Point is inside Rect
     def is_colliding_with_point(self, pos: pygame.Vector2):
-        return self.rect.collidepoint(pos)
+        if self.update in self.game.update_functions:
+            return self.rect.collidepoint(pos)
     
     #Check if Rect is touching Rect
     def is_colliding_with_rect(self, rect: pygame.Rect):
-        return self.rect.colliderect(rect)
+        if self.update in self.game.update_functions:
+            return self.rect.colliderect(rect)
+
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.sprites.add(self)
+        self.game.update_functions.append(self.update)
+
+    #Remove object
+    def remove_from_game(self):
+        self.ingame = False
+        self.game.sprites.remove(self)
+        self.game.update_functions.remove(self.update)
 
 
 class RigidBody(Body):
