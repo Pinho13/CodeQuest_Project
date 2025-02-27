@@ -93,3 +93,17 @@ class RigidBody(Body):
     
     def add_force(self, force: pygame.Vector2):
         self.acceleration += force/self.mass
+    
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.sprites.add(self)
+        self.game.update_functions.append(self.update)
+        self.game.update_functions.append(self.physics_update)
+
+    #Remove object
+    def remove_from_game(self):
+        self.ingame = False
+        self.game.sprites.remove(self)
+        self.game.update_functions.remove(self.update)
+        self.game.update_functions.remove(self.physics_update)

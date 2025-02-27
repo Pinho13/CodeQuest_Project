@@ -37,6 +37,9 @@ class Game:
         self.keys_down = []
         self.keys_up = []
         self.keys_pressed = []
+        self.mouse_down = []
+        self.mouse_up = []
+        self.mouse_pressed = []
 
         #Stores functions that run every frame
         self.update_functions = []
@@ -54,6 +57,8 @@ class Game:
         #Restart Inputs
         self.keys_down = []
         self.keys_up = []
+        self.mouse_down = []
+        self.mouse_up = []
     
         for event in self.events:
             #QUIT event
@@ -70,7 +75,17 @@ class Game:
             if event.type == pygame.KEYUP:
                 self.keys_up.append(event.key)
                 self.keys_pressed.remove(event.key)
-            # print(event.dict)
+
+            #MOUSEDOWN event
+            if event.type == pygame.MOUSEBUTTONDOWN:
+                self.mouse_down.append(event.button)
+                self.mouse_pressed.append(event.button)
+            
+            #MOUSEUP event
+            if event.type == pygame.MOUSEBUTTONUP:
+                self.mouse_up.append(event.button)
+                self.mouse_pressed.remove(event.button)
+            #print(event.dict)
 
     def on_update(self, func):
         self.update_functions.append(func)
