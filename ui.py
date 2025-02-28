@@ -51,8 +51,10 @@ class Text(pygame.sprite.Sprite):
     #Remove from rendering and updating
     def remove_from_game(self):
         self.ingame = False
-        self.game.sprites.remove(self)
-        self.game.update_functions.remove(self.update)
+        if self in self.game.sprites:
+            self.game.sprites.remove(self)
+        if self.update in self.game.update_functions:
+            self.game.update_functions.remove(self.update)
 
 
 class Button(Body):
@@ -150,11 +152,14 @@ class Button(Body):
         self.ingame = True
         self.game.sprites.add(self)
         self.game.update_functions.append(self.update)
-        self.game.update_functions.append(self.physics_update)
+        self.game.update_functions.append(self.ui_update)
 
     #Remove object
     def remove_from_game(self):
         self.ingame = False
-        self.game.sprites.remove(self)
-        self.game.update_functions.remove(self.update)
-        self.game.update_functions.remove(self.physics_update)
+        if self in self.game.sprites:
+            self.game.sprites.remove(self)
+        if self.update in self.game.update_functions:
+            self.game.update_functions.remove(self.update)
+        if self.ui_update in self.game.update_functions:
+            self.game.update_functions.remove(self.ui_update)

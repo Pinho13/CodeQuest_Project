@@ -75,8 +75,8 @@ class Animation:
     #Remove from rendering and updating
     def remove_from_game(self):
         self.ingame = False
-    
-        self.game.update_functions.remove(self.update)
+        if self.update in self.game.update_functions:
+            self.game.update_functions.remove(self.update)
 
 
 class Animator:
@@ -148,5 +148,6 @@ class Animator:
     #Remove from rendering and updating
     def remove_from_game(self):
         self.ingame = False
-        self.game.update_functions.remove(self.update)
+        if self.update in self.game.update_functions:
+            self.game.update_functions.remove(self.update)
     

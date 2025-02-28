@@ -13,17 +13,13 @@ def create_body():
     global bodies
     bodies.append(objects.Body(game, pos= Vector2(random.randint(0, game.width-100), random.randint(0, game.height-100))))
 
-#timer = tools.Timer(game, 2, True, create_body)
+timer = tools.Timer(game, 2, True, button.remove_from_game)
+timer1 = tools.Timer(game, 3, True, button.add_to_game)
 
 
 @game.on_update
 def update():
-    global score
-    points.text = str(score)
-    for i in bodies:
-        if i.is_colliding_with_point(pygame.mouse.get_pos()):
-            i.remove_from_game()
-            score += 1
-            #timer.time -= 0.1
+    pass
+
 
 game.run()

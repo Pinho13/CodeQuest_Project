@@ -69,4 +69,14 @@ class Timer:
     #Unpause timer
     def unpause(self):
         self.playing = True
+    
+    #Add object
+    def add_to_game(self):
+        self.ingame = True
+        self.game.update_functions.append(self.update)
 
+    #Remove object
+    def remove_from_game(self):
+        self.ingame = False
+        if self.update in self.game.update_functions:
+            self.game.update_functions.remove(self.update)
