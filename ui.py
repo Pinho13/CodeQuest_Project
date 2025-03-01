@@ -177,6 +177,11 @@ class Button(Body):
     
     #Changes Vector2 Size to FontSize
     def vec_to_font(self, text, vec: pygame.Vector2):
-        width = ((vec.x * 100)/38)/len(text)
-        height = ((vec.y * 100)/68)
-        return width
+        width1 = ((vec.x * 100)/38)/len(text)
+        height1 = width1 * 1.8
+        height2 = ((vec.y * 100)/68)
+        print(self.size.y)
+        if height1 < self.size.y:
+            return width1
+        else:
+            return height2
