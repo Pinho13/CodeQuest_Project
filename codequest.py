@@ -26,6 +26,9 @@ class Game:
         self.background_color = background_color
         self.name = name
         pygame.display.set_caption(name)
+        
+        #Sounds
+        pygame.mixer.init()
 
         # Settings
         self.clock = pygame.time.Clock()
@@ -63,6 +66,7 @@ class Game:
         for event in self.events:
             #QUIT event
             if event.type == pygame.QUIT:
+                pygame.mixer.quit()
                 pygame.quit()
                 sys.exit()
 
