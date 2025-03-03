@@ -34,7 +34,6 @@ class Text(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft=pos)
     
     def update(self):
-        print(self.rect.size)
         self.check_if_size_changed()
         if self.center:
             self.rect = self.image.get_rect(center=self.pos)
@@ -180,7 +179,6 @@ class Button(Body):
         width1 = ((vec.x * 100)/38)/len(text)
         height1 = width1 * 1.8
         height2 = ((vec.y * 100)/68)
-        print(self.size.y)
         if height1 < self.size.y:
             return width1
         else:

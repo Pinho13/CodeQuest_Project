@@ -5,6 +5,7 @@ import objects
 import tools
 import sprites
 import ui
+import audio
 
 from pygame import Vector2
 
