@@ -112,3 +112,8 @@ class RigidBody(Body):
             self.game.update_functions.remove(self.update)
         if self.physics_update in self.game.update_functions:
             self.game.update_functions.remove(self.physics_update)
+
+
+class ParticleSystem:
+    def __init__(self):
+        pass
