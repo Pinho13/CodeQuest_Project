@@ -1,6 +1,8 @@
 import pygame
 import sprites
 import tools
+import math
+import random
 
 from typing import Union
 
@@ -69,7 +71,7 @@ class Body(pygame.sprite.Sprite):
 
 
 class RigidBody(Body):
-    def __init__(self, game, pos = pygame.Vector2(0, 0), size = pygame.Vector2(50, 50), color = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
         super().__init__(game, pos, size, color, image)
         self.game = game
 
@@ -115,5 +117,42 @@ class RigidBody(Body):
 
 
 class ParticleSystem:
-    def __init__(self):
-        pass
+    def __init__(self, game,  num_of_particles: int = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: int = 50, color: tuple[int, int, int] = (0, 0, 0), duration: float = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: float = 5, drag: float = 1):
+        self.game = game
+        
+        #Attributes
+        self.num_of_particles = num_of_particles
+        self.pos = pos
+        self.size = size
+        self.color = color
+        self.direction = direction
+        self.velocity = velocity
+        self.looping = looping
+        self.drag = drag
+        
+        #Particles
+        self.particles = []
+        
+        #Timer
+        self.timer = tools.Timer(game, time=duration, looping=looping, play_on_start=False, functions=[self.play, self.is_loop_over])
+    
+    def play(self):
+        self.timer.looping = self.looping
+        #Restart and Instantiate Particles
+        self.stop()
+        for i in range(self.num_of_particles):
+            instance = RigidBody(game = self.game, pos = self.pos, size = (self.size, self.size), color = self.color, gravity = (0, 0), drag = self.drag)
+            particle_dir = math.radians(random.randint(self.direction[0], self.direction[1]))
+            instance.velocity = pygame.Vector2(math.cos(particle_dir), math.sin(particle_dir)) * self.velocity
+            self.particles.append(instance)
+        if self.looping:
+            self.timer.start()
+            
+    def stop(self):
+        for i in self.particles:
+            i.remove_from_game()
+        self.particles = []
+            
+    def is_loop_over(self):
+        if not self.looping:
+            self.stop()
