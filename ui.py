@@ -16,7 +16,7 @@ class Text(pygame.sprite.Sprite):
         self.ingame = True
 
         #Atributes
-        self.pos = pos
+        self.pos = pygame.Vector2(pos)
         self.color = color
         self.size = size
         self.text = text

@@ -18,9 +18,9 @@ class Body(pygame.sprite.Sprite):
         self.ingame = True
 
         #Atributes
-        self.pos = pos
+        self.pos = pygame.Vector2(pos)
         self.color = color
-        self.size = size
+        self.size = pygame.Vector2(size)
 
         #Body Creation
         self.animator = None
@@ -79,7 +79,7 @@ class RigidBody(Body):
         game.update_functions.append(self.physics_update)
 
         #Atributes
-        self.gravity = gravity
+        self.gravity = pygame.Vector2(gravity)
         self.velocity = pygame.Vector2()
         self.acceleration = pygame.Vector2()
         self.deacceleration = deacceleration
@@ -122,7 +122,7 @@ class ParticleSystem:
         
         #Attributes
         self.num_of_particles = num_of_particles
-        self.pos = pos
+        self.pos = pygame.Vector2(pos)
         self.size = size
         self.color = color
         self.direction = direction
