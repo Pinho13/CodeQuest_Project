@@ -117,12 +117,12 @@ class RigidBody(Body):
 
 
 class ParticleSystem:
-    def __init__(self, game,  num_of_particles: int = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: int = 50, color: tuple[int, int, int] = (0, 0, 0), duration: float = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: float = 5, drag: float = 1):
+    def __init__(self, game,  num_of_particles: Union[int, tuple] = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: Union[int, tuple] = 50, color: Union[list, tuple[int, int, int]] = (0, 0, 0), duration: Union[float, tuple] = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: float = 5, drag: float = 1):
         self.game = game
         
         #Attributes
         self.num_of_particles = num_of_particles
-        self.pos = pygame.Vector2(pos)
+        self.pos = pygame.Vector2(pos) if type(pos) == pygame.Vector2 else pos
         self.size = size
         self.color = color
         self.direction = direction
@@ -140,10 +140,11 @@ class ParticleSystem:
         self.timer.looping = self.looping
         #Restart and Instantiate Particles
         self.stop()
-        for i in range(self.num_of_particles):
-            instance = RigidBody(game = self.game, pos = self.pos, size = (self.size, self.size), color = self.color, gravity = (0, 0), drag = self.drag)
+        for i in range(self.param_in_interval(self.num_of_particles)):
+            size = self.param_in_interval(self.size)
+            instance = RigidBody(game = self.game, pos = self.param_in_interval(self.pos), size = (size, size), color = self.param_in_interval(self.color), gravity = (0, 0), drag = self.param_in_interval(self.drag))
             particle_dir = math.radians(random.randint(self.direction[0], self.direction[1]))
-            instance.velocity = pygame.Vector2(math.cos(particle_dir), math.sin(particle_dir)) * self.velocity
+            instance.velocity = pygame.Vector2(math.cos(particle_dir), math.sin(particle_dir)) * self.param_in_interval(self.velocity)
             self.particles.append(instance)
         if self.looping:
             self.timer.start()
@@ -156,3 +157,18 @@ class ParticleSystem:
     def is_loop_over(self):
         if not self.looping:
             self.stop()
+    
+    #This receives a parameter and if it is a tuple it outputs a random number between the range given
+    def param_in_interval(self, param: Union[int, tuple, list]):
+        if type(param) == int or type(param) == pygame.Vector2:
+            return param
+        elif type(param) == tuple and len(param) == 2:
+            i, j = param
+            if type(i) == pygame.Vector2:
+                return pygame.Vector2(random.randint(int(i.x), int(j.x)), random.randint(int(i.y), int(j.y)))
+            elif type(j) == float:
+                return random.randrange(i, j)
+            elif type(j) == int:
+                return random.randint(i, j)
+        else:
+            return param[random.randint(0, len(param)-1)]

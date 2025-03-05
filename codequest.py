@@ -17,7 +17,7 @@ class Game:
         height: int =500,
         background_color: tuple[int, int, int] =(255, 255, 255),
         fps: int =60,
-        show_fps: bool = True,
+        show_fps: bool =True,
     ):
         pygame.init()
         # Screen
