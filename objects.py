@@ -134,18 +134,25 @@ class ParticleSystem:
         self.particles = []
         
         #Timer
-        self.timer = tools.Timer(game, time=duration, looping=looping, play_on_start=False, functions=[self.play, self.is_loop_over])
+        self.timer = tools.Timer(game, time=duration, looping=looping, play_on_start=False, functions=[self.play])
     
     def play(self):
         self.timer.looping = self.looping
-        #Restart and Instantiate Particles
-        self.stop()
+        particles = []
         for i in range(self.param_in_interval(self.num_of_particles)):
+            #Get the particle Size
             size = self.param_in_interval(self.size)
+            #Instantiate Particle
             instance = RigidBody(game = self.game, pos = self.param_in_interval(self.pos), size = (size, size), color = self.param_in_interval(self.color), gravity = (0, 0), drag = self.param_in_interval(self.drag))
+            #Find Direction and add Force
             particle_dir = math.radians(random.randint(self.direction[0], self.direction[1]))
             instance.velocity = pygame.Vector2(math.cos(particle_dir), math.sin(particle_dir)) * self.param_in_interval(self.velocity)
-            self.particles.append(instance)
+            #Add to List
+            particles.append(instance)
+        self.particles += particles
+        #Add Destroy Timer
+        destroy_timer = tools.Timer(self.game, time = self.timer.time, functions=(lambda: self.destroy_particle(particles)))
+        destroy_timer.functions.append(destroy_timer.remove_from_game)
         if self.looping:
             self.timer.start()
             
@@ -153,10 +160,7 @@ class ParticleSystem:
         for i in self.particles:
             i.remove_from_game()
         self.particles = []
-            
-    def is_loop_over(self):
-        if not self.looping:
-            self.stop()
+        self.timer.stop()
     
     #This receives a parameter and if it is a tuple it outputs a random number between the range given
     def param_in_interval(self, param: Union[int, tuple, list]):
@@ -172,3 +176,9 @@ class ParticleSystem:
                 return random.randint(i, j)
         else:
             return param[random.randint(0, len(param)-1)]
+
+    def destroy_particle(self, particles: list):
+        for particle in particles:
+            particle.remove_from_game()
+            if particle in self.particles:
+                self.particles.remove(particle)
