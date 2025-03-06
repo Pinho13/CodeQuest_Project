@@ -64,8 +64,8 @@ class Text(pygame.sprite.Sprite):
 
 
 class Button(Body):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_img: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255)):
-        super().__init__(game, pos, size, normal_color, normal_image)
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_img: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255), center: bool = False):
+        super().__init__(game, pos, size, normal_color, normal_image, center)
         self.game = game
 
         #Implement it inGame
@@ -86,7 +86,7 @@ class Button(Body):
         self.normal_color = normal_color
         self.hover_color = hover_color
         self.clicked_color = clicked_color
-        self.text = Text(game,pos=pos+size/2, size=int(self.vec_to_font(text, self.size)), text=text, color=text_color, center=True)
+        self.label = Text(game,pos=pos+size/2, size=int(self.vec_to_font(text, self.size)), text=text, color=text_color, center=True)
 
         #Info var
         self.hovering = False
@@ -97,7 +97,11 @@ class Button(Body):
 
     def ui_update(self):
         #Change Text Size
-        self.text.size = int(self.vec_to_font(self.text.text, self.size))
+        self.label.size = int(self.vec_to_font(self.label.text, self.size))
+        if self.center:
+            self.label.pos = self.pos
+        else:
+            self.label.pos = self.pos + self.size/2
 
         #Check when mouse hovers
         if not self.hovering and self.is_colliding_with_point(pygame.mouse.get_pos()):
@@ -132,15 +136,24 @@ class Button(Body):
     
     def click(self):
         for i in self.__on_click_functions:
-            i()
+            if i.__code__.co_argcount == 1:
+                i(self)
+            else:
+                i()
     
     def hover(self):
         for i in self.__on_hover_functions:
-            i()
+            if i.__code__.co_argcount == 1:
+                i(self)
+            else:
+                i()
     
     def unhover(self):
         for i in self.__on_unhover_functions:
-            i()
+            if i.__code__.co_argcount == 1:
+                i(self)
+            else:
+                i()
 
     def on_click(self, func):
         self.__on_click_functions.append(func)
@@ -176,7 +189,10 @@ class Button(Body):
     
     #Changes Vector2 Size to FontSize
     def vec_to_font(self, text, vec: pygame.Vector2):
-        width1 = ((vec.x * 100)/38)/len(text)
+        text_length = len(text)
+        if len(text) == 0:
+            text_length = 2
+        width1 = ((vec.x * 100)/38)/text_length
         height1 = width1 * 1.8
         height2 = ((vec.y * 100)/68)
         if height1 < self.size.y:

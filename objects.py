@@ -8,7 +8,7 @@ from typing import Union
 
 
 class Body(pygame.sprite.Sprite):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None, center: bool = False):
         super().__init__()
         self.game = game
 
@@ -21,6 +21,7 @@ class Body(pygame.sprite.Sprite):
         self.pos = pygame.Vector2(pos)
         self.color = color
         self.size = pygame.Vector2(size)
+        self.center = center
 
         #Body Creation
         self.animator = None
@@ -35,7 +36,10 @@ class Body(pygame.sprite.Sprite):
             self.animator = image
             self.image = image.frame
             self.image = pygame.transform.scale(self.image, self.size)
-        self.rect = self.image.get_rect(topleft=pos)
+        if not center:
+            self.rect = self.image.get_rect(topleft=pos)
+        else:
+            self.rect = self.image.get_rect(center=pos)
 
     def update(self):
         if self.animator == None:
@@ -43,7 +47,10 @@ class Body(pygame.sprite.Sprite):
         elif type(self.animator) != str:
             self.image = self.animator.frame
         self.image = pygame.transform.scale(self.image, self.size)
-        self.rect = self.image.get_rect(topleft=self.pos)
+        if not self.center:
+            self.rect = self.image.get_rect(topleft=self.pos)
+        else:
+            self.rect = self.image.get_rect(center=self.pos)
     
     #Check if Point is inside Rect
     def is_colliding_with_point(self, pos: pygame.Vector2):
@@ -71,8 +78,8 @@ class Body(pygame.sprite.Sprite):
 
 
 class RigidBody(Body):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0):
-        super().__init__(game, pos, size, color, image)
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0, center: bool = False):
+        super().__init__(game, pos, size, color, image, center)
         self.game = game
 
         #Implement it inGame
