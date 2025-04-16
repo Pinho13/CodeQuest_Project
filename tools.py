@@ -15,6 +15,9 @@ def convert_images(anim: list):
         
         return buffer
 
+def get_vector_angle(vec: pygame.Vector2):
+        return vec.angle_to(pygame.Vector2(1, 0))
+
 
 class Timer:
     def __init__(self, game, time: float = 1, looping: bool = False, functions: Union[list] = [], play_on_start: bool = True):

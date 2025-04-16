@@ -26,16 +26,19 @@ class Body(pygame.sprite.Sprite):
         #Body Creation
         self.animator = None
         if image == None:
-            self.image = pygame.Surface(size)
+            self.image = pygame.Surface(size, pygame.SRCALPHA)
             self.image.fill(self.color)
+            self.buffer = self.image
         elif type(image) == str:
             self.animator = image
             self.image = tools.convert_images([image])[0]
             self.image = pygame.transform.scale(self.image, self.size)
+            self.buffer = self.image
         else:
             self.animator = image
             self.image = image.frame
             self.image = pygame.transform.scale(self.image, self.size)
+            self.buffer = self.image
         if not center:
             self.rect = self.image.get_rect(topleft=pos)
         else:
@@ -47,6 +50,14 @@ class Body(pygame.sprite.Sprite):
         elif type(self.animator) != str:
             self.image = self.animator.frame
         self.image = pygame.transform.scale(self.image, self.size)
+        if not self.center:
+            self.rect = self.image.get_rect(topleft=self.pos)
+        else:
+            self.rect = self.image.get_rect(center=self.pos)
+    
+    #Sets Rotation
+    def set_rotation(self, angle: float):
+        self.image = pygame.transform.rotate(self.buffer, angle)
         if not self.center:
             self.rect = self.image.get_rect(topleft=self.pos)
         else:
