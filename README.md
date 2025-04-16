@@ -24,3 +24,16 @@ def update():
 #Run Game
 game.run()
 ```
+
+## Architecture Overview
+
+  * CodeQuest
+    * Game()
+    * audio.py
+      * Sound()
+    * objects.py
+      * Body()
+      * RigidBody() <code style="color : grey">From Body</code>
+    * sprites.py
+    * tools.py
+    * ui.py
