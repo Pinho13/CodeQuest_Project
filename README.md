@@ -66,7 +66,7 @@ Game(name: str = "Window", width: int = 500, height: int = 500, background_color
 
 Sound(sound: str, volume: float = 1)
 
-  * **sound*:** String with the path of the sound
+  * **sound:** String with the path of the sound
   * **volume:** Volume of the sound
 
 ## objects.py
@@ -75,7 +75,7 @@ Sound(sound: str, volume: float = 1)
 
 Body(game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None, center: bool = False)
 
-  * **game*:** Game instance
+  * **game:** Game instance
   * **pos:** Position of the body
   * **size:** Size of the body
   * **color:** Color of the body
@@ -85,4 +85,3 @@ Body(game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = py
     * Animation: renders the animation given
     * Animator: renders the current animation on the animator
   * **center:** If true the body is centered in the position given
-  
