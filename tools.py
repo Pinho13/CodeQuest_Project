@@ -15,6 +15,7 @@ def convert_images(anim: list):
         
         return buffer
 
+#Returns Angle of Vector
 def get_vector_angle(vec: pygame.Vector2):
         return vec.angle_to(pygame.Vector2(1, 0))
 

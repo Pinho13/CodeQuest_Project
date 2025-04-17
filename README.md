@@ -33,7 +33,15 @@ game.run()
       * Sound()
     * objects.py
       * Body()
-      * RigidBody()   $${\color{lightblue}From \space Body}$$
+      * RigidBody() $${\color{lightblue}From \space Body}$$
+      * ParticleSystem()
     * sprites.py
+      * Animation()
+      * Animator()
     * tools.py
+      * Timer()
     * ui.py
+      * Text()
+      * Button()
+    * audio.py
+      * Sound()
