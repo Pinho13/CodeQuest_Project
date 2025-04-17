@@ -33,7 +33,7 @@ game.run()
       * Sound()
     * objects.py
       * Body()
-      * RigidBody() $${\color{blue}From \space Body}$$
+      * RigidBody() $${\color{lightblue}From \space Body}$$
     * sprites.py
     * tools.py
     * ui.py
