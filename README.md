@@ -49,7 +49,9 @@ game.run()
 
 # Documentation
 
-## Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps=60, show_fps=True)
+## Game()
+
+Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps=60, show_fps=True)
 
   * **name:** Name of the window
   * **width:** Width of the window
