@@ -49,7 +49,7 @@ game.run()
 
 # Documentation
 
-## Game()
+  ## Game()
 
 Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps=60, show_fps=True)
 
@@ -59,3 +59,7 @@ Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps
   * **background_color:** Background color
   * **fps:** Max fps
   * **show_fps:** Shows fps on top of the window
+
+## audio.py
+
+### Sound()
