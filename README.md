@@ -49,17 +49,40 @@ game.run()
 
 # Documentation
 
-  ## Game()
+## Game()
 
-Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps=60, show_fps=True)
+Game(name: str = "Window", width: int = 500, height: int = 500, background_color: tuple[int, int, int] = (255, 255, 255), fps: int = 60, show_fps: bool = True)
 
   * **name:** Name of the window
   * **width:** Width of the window
   * **height:** Height of the window
   * **background_color:** Background color
   * **fps:** Max fps
-  * **show_fps:** Shows fps on top of the window
+  * **show_fps:** If true shows fps on top of the window
 
 ## audio.py
 
 ### Sound()
+
+Sound(sound: str, volume: float = 1)
+
+  * **sound*:** String with the path of the sound
+  * **volume:** Volume of the sound
+
+## objects.py
+
+### Body()
+
+Body(game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None, center: bool = False)
+
+  * **game*:** Game instance
+  * **pos:** Position of the body
+  * **size:** Size of the body
+  * **color:** Color of the body
+  * **image:** If given
+    * None: renders as a rectangle
+    * String: renders the image in the path given
+    * Animation: renders the animation given
+    * Animator: renders the current animation on the animator
+  * **center:** If true the body is centered in the position given
+  
