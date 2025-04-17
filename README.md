@@ -42,6 +42,6 @@ game.run()
       * Timer()
     * ui.py
       * Text()
-      * Button()
+      * Button() $${\color{lightblue}From \space Body}$$
     * audio.py
       * Sound()
