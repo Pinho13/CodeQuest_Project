@@ -33,8 +33,7 @@ game.run()
       * Sound()
     * objects.py
       * Body()
-      * RigidBody() ```diff #From Body
- ```
+      * RigidBody() $${\color{grey}From Body}$$
     * sprites.py
     * tools.py
     * ui.py
