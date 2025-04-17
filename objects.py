@@ -135,7 +135,7 @@ class RigidBody(Body):
 
 
 class ParticleSystem:
-    def __init__(self, game,  num_of_particles: Union[int, tuple] = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: Union[int, tuple] = 50, color: Union[list, tuple[int, int, int]] = (0, 0, 0), duration: Union[float, tuple] = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: float = 5, drag: float = 1):
+    def __init__(self, game, num_of_particles: Union[int, tuple] = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: Union[int, tuple] = 50, color: Union[list, tuple[int, int, int]] = (0, 0, 0), duration: Union[float, tuple] = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: Union[float, tuple] = 5, drag: Union[float, tuple] = 1):
         self.game = game
         
         #Attributes
