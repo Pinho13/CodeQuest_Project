@@ -45,3 +45,15 @@ game.run()
       * Button() $${\color{lightblue}From \space Body}$$
     * audio.py
       * Sound()
+
+
+# Documentation
+
+## Game(name="Window", width=500, height=500, background_color=(255, 255, 255), fps=60, show_fps=True)
+
+  * **name:** Name of the window
+  * **width:** Width of the window
+  * **height:** Height of the window
+  * **background_color:** Background color
+  * **fps:** Max fps
+  * **show_fps:** Shows fps on top of the window
