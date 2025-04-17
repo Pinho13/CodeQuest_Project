@@ -33,7 +33,8 @@ game.run()
       * Sound()
     * objects.py
       * Body()
-      * RigidBody() ```diff #From Body ```
+      * RigidBody() ```diff #From Body
+ ```
     * sprites.py
     * tools.py
     * ui.py
