@@ -136,3 +136,33 @@ ParticleSystem(game, num_of_particles: Union[int, tuple] = 10, pos: pygame.Vecto
   * **drag:** If given
     * Float: Particles have fixed drag
     * Tuple: Particles have a random drag between those two values
+
+## sprites.py
+
+### Animation()
+
+```py
+Animation(game, name: str, animation: Union[list, str], time_between_frames: float = 1, looping: bool = True)
+```
+
+* **game:** Game instance
+* **name:** Animation name
+* **animation:** If given
+  * List of strings: Makes an animation from the sprites in the paths given in the list
+  * String: Makes an animation from the sprites in the path given
+* **time_between_frames:** Time between each frame
+* **looping:** Loops animation if true
+
+### Animator()
+
+```py
+Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animation = None)
+```
+
+* **game:** Game instance
+* **animations:** If given
+  * List of animations: Animations in the animator
+  * Animation: Makes it the only animation in the animator
+* **idle_anim:** If given
+  * Animation: Makes it the idle animation
+  * None: makes the idle animation the first animation given in animations
