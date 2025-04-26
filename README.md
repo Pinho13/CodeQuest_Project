@@ -43,8 +43,6 @@ game.run()
     * ui.py
       * Text()
       * Button() $${\color{lightblue}From \space Body}$$
-    * audio.py
-      * Sound()
 
 
 # Documentation
@@ -183,3 +181,36 @@ Timer(game, time: float = 1, looping: bool = False, functions: Union[list, funct
   * List of functions: The functions will trigger once the timer finishes 
   * Function: THe function will trigger once the timer finishes
 * **play_on_start:** If true timer will start when instantiated
+
+
+## ui.py
+
+### Text()
+
+```py
+Text(game, text: str, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: int = 50, color: tuple[int, int, int] = (0, 0, 0), center: bool = False)
+```
+
+  * **game:** Game instance
+  * **pos:** Position of the body
+  * **size:** Size of the body
+  * **color:** Color of the body
+  * **center:** If true the body is centered in the position given
+
+### Button()
+
+```py
+Button(game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_image: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255), center: bool = False)
+```
+
+  * **game:** Game instance
+  * **pos:** Position of the body
+  * **size:** Size of the body
+  * **normal_image:** Default button image
+  * **hover_image:** Image when mouse hovering button
+  * **clicked_image:** Image when button clicked
+  * **normal_color:** Default button color
+  * **hover_color:** Color when mouse hovering button
+  * **clicked_color:** Color when button clicked
+  * **text:** Button text
+  * **center:** If true the body is centered in the position given

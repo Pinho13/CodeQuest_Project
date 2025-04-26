@@ -64,7 +64,7 @@ class Text(pygame.sprite.Sprite):
 
 
 class Button(Body):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_img: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255), center: bool = False):
+    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_image: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255), center: bool = False):
         super().__init__(game, pos, size, normal_color, normal_image, center)
         self.game = game
 
@@ -80,7 +80,7 @@ class Button(Body):
         #Image Attributes
         self.normal_image = pygame.image.load(normal_image).convert_alpha() if normal_image != None else normal_image
         self.hover_image = pygame.image.load(hover_image).convert_alpha() if hover_image != None else hover_image
-        self.clicked_image = pygame.image.load(clicked_img).convert_alpha() if clicked_img != None else clicked_img
+        self.clicked_image = pygame.image.load(clicked_image).convert_alpha() if clicked_image != None else clicked_image
 
         #Color Attributes
         self.normal_color = normal_color
