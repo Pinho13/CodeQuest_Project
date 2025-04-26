@@ -1,7 +1,11 @@
 import pygame
 
 class Sound:
-    def __init__(self, sound: str, volume: float = 1):
+    def __init__(
+        self,
+        sound: str,
+        volume: float = 1,
+    ):
         self.sound = pygame.mixer.Sound(sound)
         self.sound.set_volume(volume)
     

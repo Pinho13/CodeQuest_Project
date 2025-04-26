@@ -8,7 +8,15 @@ from typing import Union
 
 
 class Body(pygame.sprite.Sprite):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, str, None] = None, center: bool = False):
+    def __init__(
+        self,
+        game,
+        pos: pygame.Vector2 = pygame.Vector2(0, 0),
+        size: pygame.Vector2 = pygame.Vector2(50, 50),
+        color: tuple[int, int, int] = (0, 0, 0),
+        image: Union[sprites.Animator, sprites.Animation, str, None] = None,
+        center: bool = False,
+    ):
         super().__init__()
         self.game = game
 
@@ -89,7 +97,19 @@ class Body(pygame.sprite.Sprite):
 
 
 class RigidBody(Body):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), color: tuple[int, int, int] = (0, 0, 0), image: Union[sprites.Animator, sprites.Animation, None] = None, gravity: pygame.Vector2 = pygame.Vector2(0, 980), mass: float = 1, drag: float = 0, deacceleration: float = 0, center: bool = False):
+    def __init__(
+        self,
+        game,
+        pos: pygame.Vector2 = pygame.Vector2(0, 0),
+        size: pygame.Vector2 = pygame.Vector2(50, 50),
+        color: tuple[int, int, int] = (0, 0, 0),
+        image: Union[sprites.Animator, sprites.Animation, None] = None,
+        gravity: pygame.Vector2 = pygame.Vector2(0, 980),
+        mass: float = 1,
+        drag: float = 0,
+        deacceleration: float = 0,
+        center: bool = False,
+    ):
         super().__init__(game, pos, size, color, image, center)
         self.game = game
 
@@ -135,7 +155,19 @@ class RigidBody(Body):
 
 
 class ParticleSystem:
-    def __init__(self, game, num_of_particles: Union[int, tuple] = 10, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: Union[int, tuple] = 50, color: Union[list, tuple[int, int, int]] = (0, 0, 0), duration: Union[float, tuple] = 1, looping: bool = False, direction: tuple[int, int] = (0, 360), velocity: Union[float, tuple] = 5, drag: Union[float, tuple] = 1):
+    def __init__(
+        self,
+        game,
+        num_of_particles: Union[int, tuple] = 10,
+        pos: pygame.Vector2 = pygame.Vector2(0, 0),
+        size: Union[int, tuple] = 50,
+        color: Union[list, tuple[int, int, int]] = (0, 0, 0),
+        duration: Union[float, tuple] = 1,
+        looping: bool = False,
+        direction: tuple[int, int] = (0, 360),
+        velocity: Union[float, tuple] = 5,
+        drag: Union[float, tuple] = 1,
+    ):
         self.game = game
         
         #Attributes

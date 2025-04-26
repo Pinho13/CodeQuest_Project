@@ -6,7 +6,15 @@ from typing import Union
 from objects import Body
 
 class Text(pygame.sprite.Sprite):
-    def __init__(self, game, text: str, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: int = 50, color: tuple[int, int, int] = (0, 0, 0), center: bool = False):
+    def __init__(
+        self,
+        game,
+        text: str,
+        pos: pygame.Vector2 = pygame.Vector2(0, 0),
+        size: int = 50,
+        color: tuple[int, int, int] = (0, 0, 0),
+        center: bool = False,
+    ):
         super().__init__()
         self.game = game
 
@@ -64,7 +72,21 @@ class Text(pygame.sprite.Sprite):
 
 
 class Button(Body):
-    def __init__(self, game, pos: pygame.Vector2 = pygame.Vector2(0, 0), size: pygame.Vector2 = pygame.Vector2(50, 50), normal_image: str = None, hover_image: str = None, clicked_image: str = None, normal_color: tuple[int, int, int] = (0, 0, 0), hover_color: tuple[int, int, int] = None, clicked_color: tuple[int, int, int] = None, text: str = "", text_color: tuple[int, int, int] = (255, 255, 255), center: bool = False):
+    def __init__(
+        self,
+        game,
+        pos: pygame.Vector2 = pygame.Vector2(0, 0),
+        size: pygame.Vector2 = pygame.Vector2(50, 50),
+        normal_image: str = None,
+        hover_image: str = None,
+        clicked_image: str = None,
+        normal_color: tuple[int, int, int] = (0, 0, 0),
+        hover_color: tuple[int, int, int] = None,
+        clicked_color: tuple[int, int, int] = None,
+        text: str = "",
+        text_color: tuple[int, int, int] = (255, 255, 255),
+        center: bool = False,
+    ):
         super().__init__(game, pos, size, normal_color, normal_image, center)
         self.game = game
 

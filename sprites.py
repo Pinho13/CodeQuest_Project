@@ -4,7 +4,14 @@ import tools
 from typing import Union
 
 class Animation:
-    def __init__(self,game, name: str, animation: Union[list, str], time_between_frames: float = 1, looping: bool = True):
+    def __init__(
+        self,
+        game,
+        name: str,
+        animation: Union[list, str],
+        time_between_frames: float = 1,
+        looping: bool = True,
+    ):
         self.game = game
 
         #Implement it InGame
@@ -80,7 +87,12 @@ class Animation:
 
 
 class Animator:
-    def __init__(self, game, animations: Union[list[Animation], Animation], idle_anim: Animation = None):
+    def __init__(
+        self,
+        game,
+        animations: Union[list[Animation], Animation],
+        idle_anim: Animation = None,
+    ):
         self.game = game
 
         #Implement it InGame

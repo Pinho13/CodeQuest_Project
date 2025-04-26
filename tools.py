@@ -21,7 +21,14 @@ def get_vector_angle(vec: pygame.Vector2):
 
 
 class Timer:
-    def __init__(self, game, time: float = 1, looping: bool = False, functions: Union[list, function] = [], play_on_start: bool = True):
+    def __init__(
+        self,
+        game,
+        time: float = 1,
+        looping: bool = False,
+        functions: Union[list, function] = [],
+        play_on_start: bool = True,
+    ):
         self.game = game
 
         #Implement it InGame
