@@ -166,3 +166,20 @@ Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animati
 * **idle_anim:** If given
   * Animation: Makes it the idle animation
   * None: makes the idle animation the first animation given in animations
+
+
+## tools.py
+
+### Timer()
+
+```py
+Timer(game, time: float = 1, looping: bool = False, functions: Union[list, function] = [], play_on_start: bool = True)
+```
+
+* **game:** Game instance
+* **time:** Cooldown time
+* **looping:** If true loops the timer
+* **functions:** If given
+  * List of functions: The functions will trigger once the timer finishes 
+  * Function: THe function will trigger once the timer finishes
+* **play_on_start:** If true timer will start when instantiated
