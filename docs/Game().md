@@ -21,6 +21,12 @@ Game(name: str = "Window", width: int = 500, height: int = 500, background_color
   * **show_fps:** Shows FPS if true
   * **update_functions:** Stores the functions that run every frame
   * **delta_time:** Time between every frame
+  * **keys_down:** Keys that are clicked in the current frame
+  * **keys_up:** Keys that are unclicked in the current frame
+  * **keys_pressed:** Keys pressed in the current frame
+  * **mouse_down:** Mouse buttons clicked in the current frame
+  * **mouse_up:** Mouse buttons unclicked in the current frame
+  * **mouse_pressed:** Mouse buttons pressed in the current frame
 
 ## Callable Functions
 
