@@ -28,10 +28,10 @@ Animation(game, name: str, animation: Union[list, str], time_between_frames: flo
 
 ## Decorators
 
-  * **on_finnish(func):** makes the function get called when the animation finishes
+  * **on_finish(func):** makes the function get called when the animation finishes
 
 ```py
-@anim.on_finnish
+@anim.on_finish
 def func():
     #code
 ```

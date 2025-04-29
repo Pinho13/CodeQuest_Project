@@ -70,7 +70,7 @@ class Animation:
                 self.current_frame_index = 0
     
     #Adds functions to a list that gets called when an animation is finnished
-    def on_finnish(self, func):
+    def on_finish(self, func):
         self.on_anim_finnished.append(func)
         return func
     
