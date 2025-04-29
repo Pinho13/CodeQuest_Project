@@ -7,7 +7,7 @@ from typing import Union
 def get_files_from_dir(dir: str):
     return [dir + "/" + x for x in os.listdir(dir)]
 
-#Return a list of images loaded from a list of files
+#Returns a list of images loaded from a list of files
 def convert_images(anim: list):
         buffer = []
         for i in anim:
