@@ -144,13 +144,13 @@ ParticleSystem(game, num_of_particles: Union[int, tuple] = 10, pos: pygame.Vecto
 Animation(game, name: str, animation: Union[list, str], time_between_frames: float = 1, looping: bool = True)
 ```
 
-* **game:** Game instance
-* **name:** Animation name
-* **animation:** If given
-  * List of strings: Makes an animation from the sprites in the paths given in the list
-  * String: Makes an animation from the sprites in the path given
-* **time_between_frames:** Time between each frame
-* **looping:** Loops animation if true
+  * **game:** Game instance
+  * **name:** Animation name
+  * **animation:** If given
+    * List of strings: Makes an animation from the sprites in the paths given in the list
+    * String: Makes an animation from the sprites in the path given
+  * **time_between_frames:** Time between each frame
+  * **looping:** Loops animation if true
 
 ### Animator()
 
@@ -158,13 +158,13 @@ Animation(game, name: str, animation: Union[list, str], time_between_frames: flo
 Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animation = None)
 ```
 
-* **game:** Game instance
-* **animations:** If given
-  * List of animations: Animations in the animator
-  * Animation: Makes it the only animation in the animator
-* **idle_anim:** If given
-  * Animation: Makes it the idle animation
-  * None: makes the idle animation the first animation given in animations
+  * **game:** Game instance
+  * **animations:** If given
+    * List of animations: Animations in the animator
+    * Animation: Makes it the only animation in the animator
+  * **idle_anim:** If given
+    * Animation: Makes it the idle animation
+    * None: makes the idle animation the first animation given in animations
 
 
 ## tools.py
@@ -175,13 +175,13 @@ Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animati
 Timer(game, time: float = 1, looping: bool = False, functions: Union[list, function] = [], play_on_start: bool = True)
 ```
 
-* **game:** Game instance
-* **time:** Cooldown time
-* **looping:** If true loops the timer
-* **functions:** If given
-  * List of functions: The functions will trigger once the timer finishes 
-  * Function: THe function will trigger once the timer finishes
-* **play_on_start:** If true timer will start when instantiated
+  * **game:** Game instance
+  * **time:** Cooldown time
+  * **looping:** If true loops the timer
+  * **functions:** If given
+    * List of functions: The functions will trigger once the timer finishes 
+    * Function: THe function will trigger once the timer finishes
+  * **play_on_start:** If true timer will start when instantiated
 
 
 ## ui.py

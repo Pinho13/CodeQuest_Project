@@ -28,7 +28,7 @@ Game(name: str = "Window", width: int = 500, height: int = 500, background_color
 
 ## Decorators
 
-  * **on_update(func):** makes function get called every frame
+  * **on_update(func):** makes the function get called every frame
 
 ```py
 @game.on_update
