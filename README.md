@@ -127,6 +127,7 @@ ParticleSystem(game, num_of_particles: Union[int, tuple] = 10, pos: pygame.Vecto
   * **duration:** If given
     * Float: Particles live for that fixed duration
     * Tuple: Particles live for a random period between those two values
+  * **looping:** If true the effect keeps looping
   * **direction:** Direction range where the particles will go
   * **velocity:** If given
     * Float: Particles have fixed velocity

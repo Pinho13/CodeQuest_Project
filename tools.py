@@ -26,7 +26,7 @@ class Timer:
         game,
         time: float = 1,
         looping: bool = False,
-        functions: Union[list, function] = [],
+        functions: Union[list] = [],
         play_on_start: bool = True,
     ):
         self.game = game
