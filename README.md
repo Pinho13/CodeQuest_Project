@@ -26,20 +26,20 @@ game.run()
 ```
 
 ## Architecture Overview
-[this](docs/Game().md)
+
   * CodeQuest
     * [Game()](docs/Game().md)
     * audio.py
-      * Sound()
+      * [Sound()](docs/audio.py/Sound().md)
     * objects.py
-      * Body()
-      * RigidBody() $${\color{lightblue}From \space Body}$$
-      * ParticleSystem()
+      * [Body()](docs/objects.py/Body().md)
+      * [RigidBody()](docs/objects.py/RigidBody().md) $${\color{lightblue}From \space Body}$$
+      * [ParticleSystem()](docs/objects.py/ParticleSystem().md)
     * sprites.py
-      * Animation()
-      * Animator()
-    * tools.py
-      * Timer()
+      * [Animation()](docs/sprites.py/Animation().md)
+      * [Animator()](docs/sprites.py/Animator().md)
+    * [tools.py](docs/tools.py/tools.py.md)
+      * [Timer()](docs/tools.py/Timer().md)
     * ui.py
       * Text()
       * Button() $${\color{lightblue}From \space Body}$$
