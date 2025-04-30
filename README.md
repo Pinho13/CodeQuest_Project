@@ -29,6 +29,7 @@ game.run()
 
   * CodeQuest
     * [Game()](docs/Game().md)
+    * <a href=https://github.com/Pinho13/CodeQuest_Project/blob/main/docs/Game().md style="text-decoration: none; color: inherit">A</a>
     * audio.py
       * [Sound()](docs/audio.py/Sound().md)
     * objects.py
