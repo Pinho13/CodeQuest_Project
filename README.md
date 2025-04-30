@@ -13,15 +13,15 @@
 ```py
 from codequest import *
 
-#Create a Game Instance
+# Create a Game Instance
 game = Game()
 
-#Updates every frame
+# Updates every frame
 @game.on_update
 def update():
     pass
 
-#Run Game
+# Run Game
 game.run()
 ```
 
