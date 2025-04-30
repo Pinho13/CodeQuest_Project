@@ -28,7 +28,7 @@ game.run()
 ## Architecture Overview
 [this](docs/Game().md)
   * CodeQuest
-    * Game()
+    * [Game()](docs/Game().md)
     * audio.py
       * Sound()
     * objects.py
