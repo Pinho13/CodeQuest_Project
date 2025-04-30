@@ -13,15 +13,15 @@
 ```py
 from codequest import *
 
-#Create a Game Instance
+# Create a Game Instance
 game = Game()
 
-#Updates every frame
+# Updates every frame
 @game.on_update
 def update():
     pass
 
-#Run Game
+# Run Game
 game.run()
 ```
 
@@ -29,7 +29,6 @@ game.run()
 
   * CodeQuest
     * [Game()](docs/Game().md)
-    * <font color="red"><a href=https://github.com/Pinho13/CodeQuest_Project/blob/main/docs/Game().md>A</a></font>
     * audio.py
       * [Sound()](docs/audio.py/Sound().md)
     * objects.py

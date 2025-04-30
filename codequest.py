@@ -28,7 +28,7 @@ class Game:
         self.name = name
         pygame.display.set_caption(name)
         
-        #Sounds
+        # Sounds
         pygame.mixer.init()
 
         # Settings
@@ -37,7 +37,7 @@ class Game:
         self.fps = fps
         self.show_fps = show_fps
 
-        #Inputs
+        # Inputs
         self.keys_down = []
         self.keys_up = []
         self.keys_pressed = []
@@ -45,52 +45,52 @@ class Game:
         self.mouse_up = []
         self.mouse_pressed = []
 
-        #Stores functions that run every frame
+        # Stores functions that run every frame
         self.update_functions = []
 
-        #Stores sprites
+        # Stores sprites
         self.sprites = pygame.sprite.Group()
 
-        #Usefull Variables
+        # Usefull Variables
         self.delta_time = self.clock.tick(self.fps)
 
     def check_events(self):
         self.delta_time = self.clock.tick(self.fps)/1000
         self.events = pygame.event.get()
 
-        #Restart Inputs
+        # Restart Inputs
         self.keys_down = []
         self.keys_up = []
         self.mouse_down = []
         self.mouse_up = []
     
         for event in self.events:
-            #QUIT event
+            # QUIT event
             if event.type == pygame.QUIT:
                 pygame.mixer.quit()
                 pygame.quit()
                 sys.exit()
 
-            #KEYDOWN event
+            # KEYDOWN event
             if event.type == pygame.KEYDOWN:
                 self.keys_down.append(event.key)
                 self.keys_pressed.append(event.key)
             
-            #KEYUP event
+            # KEYUP event
             if event.type == pygame.KEYUP:
                 self.keys_up.append(event.key)
                 self.keys_pressed.remove(event.key)
 
-            #MOUSEDOWN event
+            # MOUSEDOWN event
             if event.type == pygame.MOUSEBUTTONDOWN:
                 self.mouse_down.append(event.button)
                 self.mouse_pressed.append(event.button)
             
-            #MOUSEUP event
+            # MOUSEUP event
             if event.type == pygame.MOUSEBUTTONUP:
                 self.mouse_up.append(event.button)
                 self.mouse_pressed.remove(event.button)
-            #print(event.dict)
+            # print(event.dict)
 
     def on_update(self, func):
         self.update_functions.append(func)

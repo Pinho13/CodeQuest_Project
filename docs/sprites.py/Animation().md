@@ -33,5 +33,5 @@ Animation(game, name: str, animation: Union[list, str], time_between_frames: flo
 ```py
 @anim.on_finish
 def func():
-    #code
+    # code
 ```

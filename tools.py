@@ -3,11 +3,11 @@ import os
 
 from typing import Union
 
-#Returns a list of all the files from a directory
+# Returns a list of all the files from a directory
 def get_files_from_dir(dir: str):
     return [dir + "/" + x for x in os.listdir(dir)]
 
-#Returns a list of images loaded from a list of files
+# Returns a list of images loaded from a list of files
 def convert_images(anim: list):
         buffer = []
         for i in anim:
@@ -15,7 +15,7 @@ def convert_images(anim: list):
         
         return buffer
 
-#Returns Angle of Vector
+# Returns Angle of Vector
 def get_vector_angle(vec: pygame.Vector2):
         return vec.angle_to(pygame.Vector2(1, 0))
 
@@ -31,10 +31,10 @@ class Timer:
     ):
         self.game = game
 
-        #Implement it InGame
+        # Implement it InGame
         self.game.update_functions.append(self.update)
 
-        #Atributes
+        # Atributes
         if type(functions) != list:
             self.functions = [functions]
         else:
@@ -42,18 +42,18 @@ class Timer:
         self.time = time
         self.looping = looping
         
-        #Info Variables
+        # Info Variables
         self.playing = play_on_start
 
-        #Auxiliary
+        # Auxiliary
         self.current_cooldown = 0
     
     def update(self):
-        #Add time to cooldown
+        # Add time to cooldown
         if self.playing:
             self.current_cooldown += self.game.delta_time
         
-        #Calling the functions after cooldown
+        # Calling the functions after cooldown
         if self.current_cooldown >= self.time:
             self.current_cooldown = 0
             for i in self.functions:
@@ -61,32 +61,32 @@ class Timer:
             if not self.looping:
                 self.playing = False
     
-    #Start timer
+    # Start timer
     def start(self, time: int = None):
         if time == None:
             time = self.time
         self.current_cooldown = 0
         self.playing = True
 
-    #Stop timer
+    # Stop timer
     def stop(self):
         self.current_cooldown = 0
         self.playing = False
 
-    #Pause timer
+    # Pause timer
     def pause(self):
         self.playing = False
 
-    #Unpause timer
+    # Unpause timer
     def unpause(self):
         self.playing = True
     
-    #Add object
+    # Add object
     def add_to_game(self):
         self.ingame = True
         self.game.update_functions.append(self.update)
 
-    #Remove object
+    # Remove object
     def remove_from_game(self):
         self.ingame = False
         if self.update in self.game.update_functions:

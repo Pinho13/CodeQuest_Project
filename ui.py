@@ -18,22 +18,22 @@ class Text(pygame.sprite.Sprite):
         super().__init__()
         self.game = game
 
-        #Implement it inGame
+        # Implement it inGame
         game.sprites.add(self)
         game.update_functions.append(self.update)
         self.ingame = True
 
-        #Atributes
+        # Atributes
         self.pos = pygame.Vector2(pos)
         self.color = color
         self.size = size
         self.text = text
         self.center = center
 
-        #Others
+        # Others
         self.current_size = size
 
-        #Text Creation
+        # Text Creation
         self.text_font = pygame.font.SysFont(None, size)
         self.image = self.text_font.render(text, True, color)
         if center:
@@ -56,13 +56,13 @@ class Text(pygame.sprite.Sprite):
             self.rect = self.image.get_rect(topleft=self.pos)
             self.current_size = self.size
     
-    #Add object
+    # Add object
     def add_to_game(self):
         self.ingame = True
         self.game.sprites.add(self)
         self.game.update_functions.append(self.update)
 
-    #Remove from rendering and updating
+    # Remove from rendering and updating
     def remove_from_game(self):
         self.ingame = False
         if self in self.game.sprites:
@@ -90,42 +90,42 @@ class Button(Body):
         super().__init__(game, pos, size, normal_color, normal_image, center)
         self.game = game
 
-        #Implement it inGame
+        # Implement it inGame
         game.sprites.add(self)
         game.update_functions.append(self.ui_update)
 
-        #Stores Functions for Triggers
+        # Stores Functions for Triggers
         self.__on_click_functions = []
         self.__on_hover_functions = []
         self.__on_unhover_functions = []
 
-        #Image Attributes
+        # Image Attributes
         self.normal_image = pygame.image.load(normal_image).convert_alpha() if normal_image != None else normal_image
         self.hover_image = pygame.image.load(hover_image).convert_alpha() if hover_image != None else hover_image
         self.clicked_image = pygame.image.load(clicked_image).convert_alpha() if clicked_image != None else clicked_image
 
-        #Color Attributes
+        # Color Attributes
         self.normal_color = normal_color
         self.hover_color = hover_color
         self.clicked_color = clicked_color
         self.label = Text(game,pos=pos+size/2, size=int(self.vec_to_font(text, self.size)), text=text, color=text_color, center=True)
 
-        #Info var
+        # Info var
         self.hovering = False
         self.clicked = False
 
-        #Tools
+        # Tools
         self.click_cooldown = tools.Timer(game, time=0.1, functions=self.__clicked_var_to_false, play_on_start=False)
 
     def ui_update(self):
-        #Change Text Size
+        # Change Text Size
         self.label.size = int(self.vec_to_font(self.label.text, self.size))
         if self.center:
             self.label.pos = self.pos
         else:
             self.label.pos = self.pos + self.size/2
 
-        #Check when mouse hovers
+        # Check when mouse hovers
         if not self.hovering and self.is_colliding_with_point(pygame.mouse.get_pos()):
             self.hover()
             if self.hover_image != None:
@@ -133,7 +133,7 @@ class Button(Body):
                 self.image = pygame.transform.scale(self.image, self.size)
             elif self.normal_image == None and self.hover_color != None:
                 self.color = self.hover_color
-        #Check when mouse unhovers
+        # Check when mouse unhovers
         elif self.hovering and not self.is_colliding_with_point(pygame.mouse.get_pos()):
             self.unhover()
             if self.normal_image != None:
@@ -142,10 +142,10 @@ class Button(Body):
             else:
                 self.color = self.normal_color
         
-        #Check if mouse is hovering
+        # Check if mouse is hovering
         self.hovering = self.is_colliding_with_point(pygame.mouse.get_pos())
 
-        #Check if mouse clicked
+        # Check if mouse clicked
         if self.hovering and 1 in self.game.mouse_down and not self.clicked:
             if self.clicked_image != None:
                 self.image = self.clicked_image
@@ -192,14 +192,14 @@ class Button(Body):
     def __clicked_var_to_false(self):
         self.clicked = False
     
-    #Add object
+    # Add object
     def add_to_game(self):
         self.ingame = True
         self.game.sprites.add(self)
         self.game.update_functions.append(self.update)
         self.game.update_functions.append(self.ui_update)
 
-    #Remove object
+    # Remove object
     def remove_from_game(self):
         self.ingame = False
         if self in self.game.sprites:
@@ -209,7 +209,7 @@ class Button(Body):
         if self.ui_update in self.game.update_functions:
             self.game.update_functions.remove(self.ui_update)
     
-    #Changes Vector2 Size to FontSize
+    # Changes Vector2 Size to FontSize
     def vec_to_font(self, text, vec: pygame.Vector2):
         text_length = len(text)
         if len(text) == 0:

@@ -33,5 +33,5 @@ Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animati
 ```py
 @anim.on_finish
 def func():
-    #code
+    # code
 ```

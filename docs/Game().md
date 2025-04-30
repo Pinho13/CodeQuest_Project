@@ -39,5 +39,5 @@ Game(name: str = "Window", width: int = 500, height: int = 500, background_color
 ```py
 @game.on_update
 def func():
-    #code
+    # code
 ```

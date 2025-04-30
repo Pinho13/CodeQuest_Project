@@ -20,18 +20,18 @@ class Body(pygame.sprite.Sprite):
         super().__init__()
         self.game = game
 
-        #Implement it inGame
+        # Implement it inGame
         game.sprites.add(self)
         game.update_functions.append(self.update)
         self.ingame = True
 
-        #Atributes
+        # Atributes
         self.pos = pygame.Vector2(pos)
         self.color = color
         self.size = pygame.Vector2(size)
         self.center = center
 
-        #Body Creation
+        # Body Creation
         self.animator = None
         if image == None:
             self.image = pygame.Surface(size, pygame.SRCALPHA)
@@ -63,7 +63,7 @@ class Body(pygame.sprite.Sprite):
         else:
             self.rect = self.image.get_rect(center=self.pos)
     
-    #Sets Rotation
+    # Sets Rotation
     def set_rotation(self, angle: float):
         self.image = pygame.transform.rotate(self.buffer, angle)
         if not self.center:
@@ -71,23 +71,23 @@ class Body(pygame.sprite.Sprite):
         else:
             self.rect = self.image.get_rect(center=self.pos)
     
-    #Check if Point is inside Rect
+    # Check if Point is inside Rect
     def is_colliding_with_point(self, pos: pygame.Vector2):
         if self.update in self.game.update_functions:
             return self.rect.collidepoint(pos)
     
-    #Check if Rect is touching Rect
+    # Check if Rect is touching Rect
     def is_colliding_with_rect(self, rect: pygame.Rect):
         if self.update in self.game.update_functions:
             return self.rect.colliderect(rect)
 
-    #Add object
+    # Add object
     def add_to_game(self):
         self.ingame = True
         self.game.sprites.add(self)
         self.game.update_functions.append(self.update)
 
-    #Remove object
+    # Remove object
     def remove_from_game(self):
         self.ingame = False
         if self in self.game.sprites:
@@ -113,10 +113,10 @@ class RigidBody(Body):
         super().__init__(game, pos, size, color, image, center)
         self.game = game
 
-        #Implement it inGame
+        # Implement it inGame
         game.update_functions.append(self.physics_update)
 
-        #Atributes
+        # Atributes
         self.gravity = pygame.Vector2(gravity)
         self.velocity = pygame.Vector2()
         self.acceleration = pygame.Vector2()
@@ -125,25 +125,25 @@ class RigidBody(Body):
         self.mass = mass
     
     def physics_update(self):
-        #Move
+        # Move
         self.velocity += (self.gravity + self.acceleration) * self.game.delta_time
         self.pos += self.velocity * self.game.delta_time
 
-        #Slow Down
+        # Slow Down
         self.acceleration = self.acceleration.move_towards(pygame.Vector2(), self.deacceleration * self.game.delta_time)
         self.velocity = self.velocity.move_towards(pygame.Vector2(), self.drag * self.game.delta_time)
     
     def add_force(self, force: pygame.Vector2):
         self.acceleration += force/self.mass
     
-    #Add object
+    # Add object
     def add_to_game(self):
         self.ingame = True
         self.game.sprites.add(self)
         self.game.update_functions.append(self.update)
         self.game.update_functions.append(self.physics_update)
 
-    #Remove object
+    # Remove object
     def remove_from_game(self):
         self.ingame = False
         if self in self.game.sprites:
@@ -170,7 +170,7 @@ class ParticleSystem:
     ):
         self.game = game
         
-        #Attributes
+        # Attributes
         self.num_of_particles = num_of_particles
         self.pos = pygame.Vector2(pos) if type(pos) == pygame.Vector2 else pos
         self.size = size
@@ -180,27 +180,27 @@ class ParticleSystem:
         self.looping = looping
         self.drag = drag
         
-        #Particles
+        # Particles
         self.particles = []
         
-        #Timer
+        # Timer
         self.timer = tools.Timer(game, time=duration, looping=looping, play_on_start=False, functions=[self.play])
     
     def play(self):
         self.timer.looping = self.looping
         particles = []
         for i in range(self.param_in_interval(self.num_of_particles)):
-            #Get the particle Size
+            # Get the particle Size
             size = self.param_in_interval(self.size)
-            #Instantiate Particle
+            # Instantiate Particle
             instance = RigidBody(game = self.game, pos = self.param_in_interval(self.pos), size = (size, size), color = self.param_in_interval(self.color), gravity = (0, 0), drag = self.param_in_interval(self.drag))
-            #Find Direction and add Force
+            # Find Direction and add Force
             particle_dir = math.radians(random.randint(self.direction[0], self.direction[1]))
             instance.velocity = pygame.Vector2(math.cos(particle_dir), math.sin(particle_dir)) * self.param_in_interval(self.velocity)
-            #Add to List
+            # Add to List
             particles.append(instance)
         self.particles += particles
-        #Add Destroy Timer
+        # Add Destroy Timer
         destroy_timer = tools.Timer(self.game, time = self.timer.time, functions=(lambda: self.destroy_particle(particles)))
         destroy_timer.functions.append(destroy_timer.remove_from_game)
         if self.looping:
@@ -212,7 +212,7 @@ class ParticleSystem:
         self.particles = []
         self.timer.stop()
     
-    #This receives a parameter and if it is a tuple it outputs a random number between the range given
+    # This receives a parameter and if it is a tuple it outputs a random number between the range given
     def param_in_interval(self, param: Union[int, tuple, list]):
         if type(param) == int or type(param) == pygame.Vector2:
             return param
