@@ -28,7 +28,7 @@ Animator(game, animations: Union[list[Animation], Animation], idle_anim: Animati
 
 ## Decorators
 
-  * **on_finish(func):** makes the function get called when the animation finishes
+  * **on_finish(func):** Makes the function get called when the animation finishes
 
 ```py
 @anim.on_finish
