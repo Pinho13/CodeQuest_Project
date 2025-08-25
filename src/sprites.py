@@ -1,5 +1,5 @@
 import pygame
-import tools
+from . import tools
 
 from typing import Union
 

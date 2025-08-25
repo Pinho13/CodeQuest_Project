@@ -1,11 +1,11 @@
 print("CodeQuest Repository Here: https://github.com/Pinho13/CodeQuest_Project")
 import pygame
 import sys
-import objects
-import tools
-import sprites
-import ui
-import audio
+from . import objects
+from . import tools
+from . import sprites
+from . import ui
+from . import audio
 
 from pygame import Vector2
 

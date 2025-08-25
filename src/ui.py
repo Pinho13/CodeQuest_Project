@@ -1,9 +1,9 @@
 import pygame
-import sprites
-import tools
+from . import sprites
+from . import tools
 
 from typing import Union
-from objects import Body
+from .objects import Body
 
 class Text(pygame.sprite.Sprite):
     def __init__(

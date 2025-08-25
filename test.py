@@ -1,4 +1,4 @@
-from codequest import *
+from src.codequest import *
 
 # Create a Game Instance
 game = Game()

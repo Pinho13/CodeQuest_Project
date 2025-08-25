@@ -1,6 +1,6 @@
 import pygame
-import sprites
-import tools
+from . import sprites
+from . import tools
 import math
 import random
 
