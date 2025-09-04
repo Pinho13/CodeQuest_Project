@@ -134,6 +134,7 @@ class RigidBody(Body):
         self.velocity = self.velocity.move_towards(pygame.Vector2(), self.drag * self.game.delta_time)
     
     def add_force(self, force: pygame.Vector2):
+        force = pygame.Vector2(force)
         self.acceleration += force/self.mass
     
     # Add object
@@ -172,7 +173,7 @@ class ParticleSystem:
         
         # Attributes
         self.num_of_particles = num_of_particles
-        self.pos = pygame.Vector2(pos) if type(pos) == pygame.Vector2 else pos
+        self.pos = pygame.Vector2(pos) if type(pos) == pygame.Vector2 else pos # This is so it accepts a range for the positions ex.: (Vector2(0, 0), Vector(500, 500))
         self.size = size
         self.color = color
         self.direction = direction

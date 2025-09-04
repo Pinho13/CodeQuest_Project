@@ -4,14 +4,14 @@
 
 ## How to Start
 
-  * Clone the repo
   * Install Python
-  * Install Pygame
+  * Clone the repo
+  * Go to the terminal and write ```pip install .```
   * Create a New Python File in the same Directory
   * Write the Code below
 
 ```py
-from src.codequest import *
+from CodeQuest import *
 
 # Create a Game Instance
 game = Game()
