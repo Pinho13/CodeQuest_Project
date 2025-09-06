@@ -134,7 +134,7 @@ class Animator:
             self.animations[anim].play()
     
     # Adds functions to a list that gets called when an animation is finnished
-    def on_finnish(self, func):
+    def on_finish(self, func):
         self.on_anim_finnished.append(func)
         return func
     
