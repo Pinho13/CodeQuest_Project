@@ -6,7 +6,7 @@
 
   * Install Python
   * Clone the repo
-  * Go to the terminal and write ```pip install .```
+  * Go to the terminal and write ```python -m pip install .```
   * Create a New Python File in the same Directory
   * Write the Code below
 
