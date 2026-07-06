@@ -83,9 +83,10 @@ class Body(pygame.sprite.Sprite):
 
     # Add object
     def add_to_game(self):
-        self.ingame = True
-        self.game.sprites.add(self)
-        self.game.update_functions.append(self.update)
+        if not self.ingame:
+            self.ingame = True
+            self.game.sprites.add(self)
+            self.game.update_functions.append(self.update)
 
     # Remove object
     def remove_from_game(self):
@@ -139,10 +140,11 @@ class RigidBody(Body):
     
     # Add object
     def add_to_game(self):
-        self.ingame = True
-        self.game.sprites.add(self)
-        self.game.update_functions.append(self.update)
-        self.game.update_functions.append(self.physics_update)
+        if not self.ingame:
+            self.ingame = True
+            self.game.sprites.add(self)
+            self.game.update_functions.append(self.update)
+            self.game.update_functions.append(self.physics_update)
 
     # Remove object
     def remove_from_game(self):

@@ -76,8 +76,9 @@ class Animation:
     
     # Add object
     def add_to_game(self):
-        self.ingame = True
-        self.game.update_functions.append(self.update)
+        if not self.ingame:
+            self.ingame = True
+            self.game.update_functions.append(self.update)
 
     # Remove from rendering and updating
     def remove_from_game(self):
@@ -154,8 +155,9 @@ class Animator:
 
     # Add object
     def add_to_game(self):
-        self.ingame = True
-        self.game.update_functions.append(self.update)
+        if not self.ingame:
+            self.ingame = True
+            self.game.update_functions.append(self.update)
 
     # Remove from rendering and updating
     def remove_from_game(self):

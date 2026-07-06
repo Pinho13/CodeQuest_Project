@@ -83,8 +83,9 @@ class Timer:
     
     # Add object
     def add_to_game(self):
-        self.ingame = True
-        self.game.update_functions.append(self.update)
+        if not self.ingame:
+            self.ingame = True
+            self.game.update_functions.append(self.update)
 
     # Remove object
     def remove_from_game(self):
